@@ -1,49 +1,69 @@
 import React,{useState, useEffect} from 'react'
-import NavCard from './NavCard'
+import NavCard from './NavCard' 
+import { useLocation } from 'react-router-dom' 
+
+import '../styles/NavOptions.css'
 
 
-const NavOptions = ({miPhones, redmiPhones,tv,laptop, fitnessAndLifeStyle, home, audio, accessories}) => {
-    
 
-    const[ miPhoneToggle,setmiPhoneToggle]=useState(false);
-    const[ redmiPhonesToggle, setredmiPhonesToggle]=useState(false);
-    const[ tvToggle,settvToggle]=useState(false);
-    const[ laptopToggle,setlaptopToggle]=useState(false);
-    const[ fitnessAndLifeStyleToggle,setfitnessAndLifeStyleToggle]=useState(false);
-    const[ homeToggle,sethomeToggle]=useState(false);
-    const[ audioToggle,setaudioToggle]=useState(false);
-    const[ accessoriesToggle,setaccessoriesToggle]=useState(false);
+const NavOptions = ({miPhones, redmiPhones,tv,laptop, fitnessAndLifeStyle, home, audio, accessories}) => { 
+    const location = useLocation();
+    const [miPhoneToggle,setmiPhoneToggle]=useState(false);
+    const [redmiPhonesToggle, setredmiPhonesToggle]=useState(false);
+    const [tvToggle,settvToggle]=useState(false);
+    const [ laptopToggle,setlaptopToggle]=useState(false);
+    const [ fitnessAndLifeStyleToggle,setfitnessAndLifeStyleToggle]=useState(false);
+    const [ homeToggle,sethomeToggle]=useState(false);
+    const [ audioToggle,setaudioToggle]=useState(false);
+    const [ accessoriesToggle,setaccessoriesToggle]=useState(false);
   
     
     useEffect(()=>{
-        if(window.location.pathname==="/#miphones"){
+        if(window.location.pathname ==="/miphones"){
             return setmiPhoneToggle(true)
         }
-        if(window.location.pathname==="/#redmiphones"){
+        else{
+            setmiPhoneToggle(false)
+        }
+        if(window.location.pathname ==="/redmiphones"){
             return setredmiPhonesToggle(true)
+        }else{
+             setredmiPhonesToggle(false)
         }
-        if(window.location.pathname==="/#tv"){
+        if(window.location.pathname ==="/tv"){
             return settvToggle(true)
-        }
-        if(window.location.pathname==="/#laptop"){
+        }else{
+            settvToggle(false)
+       }
+        if(window.location.pathname ==="/laptop"){
             return setlaptopToggle(true)
-        }
-        if(window.location.pathname==="/#lifestyle"){
+        }else{
+            setlaptopToggle(false)
+       }
+        if(window.location.pathname ==="/lifestyle"){
             return setfitnessAndLifeStyleToggle(true)
-        }
-        if(window.location.pathname==="/#home"){
+        }else{
+            setfitnessAndLifeStyleToggle(false)
+       }
+        if(window.location.pathname ==="/home"){
             return sethomeToggle(true)
-        }
-        if(window.location.pathname==="/#audio"){
+        }else{
+            sethomeToggle(false)
+       }
+        if(window.location.pathname ==="/audio"){
             return setaudioToggle(true)
-        }
-        if(window.location.pathname==="/#accessories"){
+        }else{
+            setaudioToggle(false)
+       }
+        if(window.location.pathname ==="/accessories"){
             return setaccessoriesToggle(true)
-        }
-    },[])
+        }else{
+            setaccessoriesToggle(false)
+       }
+    },[location.pathname])
     return (
     <div className='navOptions'>
-        {miPhoneToggle? miPhones.map((item)=>(
+        {miPhoneToggle ? miPhones.map((item)=>(
         <NavCard name={item.name} price={item.price} image={item.image} key={item.image}/>
         )) : null}
         {redmiPhonesToggle? redmiPhones.map((item)=>(
